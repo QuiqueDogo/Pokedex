@@ -1,0 +1,49 @@
+<template>
+    <div class="header">
+        <div class="containerLogo">
+            <img class="logo" src="http://pixelartmaker.com/art/d98dde45d242734.png">
+        </div>
+        <div class="menu">
+            <hamburger />
+        </div>
+    </div>
+</template>
+
+<script>
+import Hamburger from "~/components/Hamburger.vue"
+
+export default {
+    components:{
+        Hamburger
+    }
+}
+</script>
+
+<style scoped>
+.header{
+    padding:10px;
+    display: flex;
+    width:100%;
+    min-height:7vh;
+    background-image: linear-gradient(to right, #d16b6b, #d16f6a, #d1746a, #d1786a, #d17c6a, #d17e6a, #d17f6b, #d1816b, #d1816b, #d1816b, #d1816b, #d1816b);
+}
+
+.logo{
+    width: 120px;
+    height: 50px;
+}
+
+.containerLogo{
+    flex:1;
+    display: flex;
+    justify-content: center
+}
+
+.menu{
+    padding-right: 30px;
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+</style>

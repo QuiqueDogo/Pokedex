@@ -1,39 +1,20 @@
 <template>
   <div class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        nuxt
-      </h1>
-      <h2 class="subtitle">
-        Pokedex
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <card />
+
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from '~/components/Logo.vue' 
+import Card from '~/components/Card.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
+    Card
   }
 }
 </script>
@@ -46,6 +27,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  border: 1px solid #dbdbdd;
 }
 
 .title {
