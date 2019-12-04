@@ -2,12 +2,16 @@
     <div class="card">
         <div class="main">
             <div class="info">
-                <p style="flex:0.8">Nombre Pokimon</p>
-                <p style="flex:0.2">Nombre Pokimon</p>
-                <p style="flex:2">Nombre Pokimon</p>
+                <div class="subinfo">
+                <p>{{name}}</p>
+                </div>
+                <div class="subinfo2">
+                <h5 >Stats</h5>
+                <p>{{url}}</p>
+                </div>
             </div>
             <div class="image">
-                <img class="pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="" srcset="">
+                <img class="pokemon" :src="img" alt="" srcset="">
             </div>
         </div>
         <div class="options">
@@ -21,8 +25,33 @@
     </div>
 </template>
 
+<script>
+import axios from "axios";
+export default {
+    data(){
+        return {
+            img:[]
+        }
+    },
+    props:["name","url"],
+    created(){
+        axios.get(`${this.$props.url}`)
+        .then(response => {this.img = response.data.sprites.front_default,console.log(response)})
+        .catch(e => console.log(e))
+        console.log(this.$props.url);
+    }
+}
+
+
+
+
+</script>
+
 <style >
 
+p{
+    font-size: 14px;
+}
 
 .card{
     box-sizing: content-box;
@@ -30,7 +59,9 @@
     width: 300px;
     background-color: white;
     border:1.9px solid #bdbdbd9b;
-    border-radius: 10px
+    border-radius: 10px;
+    margin:20px;
+    grid-row: 1;
 }
 .main{
     width: 100%;
@@ -44,6 +75,17 @@
     width: 60%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+
+.subinfo{
+    flex:0.5;
+    padding-top: 15px;
+}
+
+.subinfo2{
+    flex:1;
+    padding-top: 15px;
 }
 
 .image{

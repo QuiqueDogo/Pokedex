@@ -4,7 +4,7 @@
             <img class="logo" src="http://pixelartmaker.com/art/d98dde45d242734.png">
         </div>
         <div class="menu">
-            <hamburger />
+        
         </div>
     </div>
 </template>
@@ -24,13 +24,13 @@ export default {
     padding:10px;
     display: flex;
     width:100%;
-    min-height:7vh;
+    height:7vh;
     background-image: linear-gradient(to right, #d16b6b, #d16f6a, #d1746a, #d1786a, #d17c6a, #d17e6a, #d17f6b, #d1816b, #d1816b, #d1816b, #d1816b, #d1816b);
 }
 
 .logo{
-    width: 120px;
-    height: 50px;
+    min-width: 120px;
+    max-height: 50px;
 }
 
 .containerLogo{

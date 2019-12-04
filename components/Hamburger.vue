@@ -23,7 +23,7 @@
         }
     }
 </script>
-<style >
+<style>
    .hidden {
         visibility: hidden;
     }
@@ -39,8 +39,8 @@
 
     .burger-button {
         position: relative;
-        height: 30px;
-        width: 32px;
+        height: 60px;
+        width: 35px;
         display: block;
         z-index: 999;
         border: 0;
