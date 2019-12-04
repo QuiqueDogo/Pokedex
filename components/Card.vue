@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
     data(){
         return {
@@ -38,12 +37,12 @@ export default {
     },
     props:["name","url"],
     created(){
-        axios.get(`${this.$props.url}`)
+        this.$axios.get(`${this.$props.url}`)
         .then(response => {
             this.img = response.data.sprites.front_default,
             this.stats = [response.data.stats[0]],
-            this.moves = [response.data.moves[0],response.data.moves[1],response.data.moves[2]],
-            console.log(response)
+            this.moves = [response.data.moves[0],response.data.moves[1],response.data.moves[2]]
+            // console.log(response)
             })
         .catch(e => console.log(e))
         // console.log(this.$props.url);

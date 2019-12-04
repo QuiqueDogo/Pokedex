@@ -57,7 +57,6 @@ export default {
     padding-right: 30px;
     display: flex;
     justify-content: center;
-    border: 1px solid black;
 }
 
 </style>

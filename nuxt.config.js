@@ -28,6 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // { src: '~/plugins/axios.js', ssr:false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -46,6 +47,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: "https://pokeapi.co/api/v2/"
   },
   /*
   ** Build configuration

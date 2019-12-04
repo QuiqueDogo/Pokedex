@@ -1,8 +1,9 @@
 <template>
   <div class="container">
+    <input v-model="filter">
     <div 
       class="grid"
-      v-for="(post, index) in post"
+      v-for="(post, index) in PokemonsFilter"
       :key="index">
       <card :name="post.name" :url="post.url" />
     </div>
@@ -10,7 +11,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Logo from '~/components/Logo.vue' 
 import Card from '~/components/Card.vue'
 
@@ -21,15 +21,35 @@ export default {
   },
   data(){
     return {
+      filter:"",
       post:[],
     }
   },
 
 created() {
-  axios.get('https://pokeapi.co/api/v2/pokemon/?limit=51')
-  .then(response => {this.post = response.data.results})
+  this.$axios.$get('/pokemon/?limit=10')
+  .then(response => {
+    this.post = response.results, 
+    console.log(response)
+  })
   .catch(e => console.log(e))
-}
+},
+  computed:{
+    PokemonsFilter(){
+      if (this.post.length > 0 ) {
+        if(!this.filter ){
+          return this.post
+        }
+        return  this.post.filter(item => {
+         if(item.name.indexOf(this.filter) > 0) {
+            return item
+          }else return ""
+          }
+        )
+      }
+      return false 
+    }
+  }
 
 }
 </script>
@@ -41,7 +61,8 @@ created() {
   max-height: 100%;
   max-width: 100vw;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   text-align: center;
   border: 1px solid #dbdbdd;
 }
