@@ -7,7 +7,8 @@
                 </div>
                 <div class="subinfo2">
                 <h5 >Stats</h5>
-                <p>{{url}}</p>
+                <p>PH: {{stats[0].base_stat}}</p>
+                <p>Moves: {{moves[0].move.name}}, {{moves[1].move.name}}, {{moves[2].move.name}} </p>
                 </div>
             </div>
             <div class="image">
@@ -30,15 +31,22 @@ import axios from "axios";
 export default {
     data(){
         return {
-            img:[]
+            img:[],
+            stats:[{base_stat:1}],
+            moves:[{move:{name:"cut"}},{move:{name:"cut"}},{move:{name:"cut"}}]
         }
     },
     props:["name","url"],
     created(){
         axios.get(`${this.$props.url}`)
-        .then(response => {this.img = response.data.sprites.front_default,console.log(response)})
+        .then(response => {
+            this.img = response.data.sprites.front_default,
+            this.stats = [response.data.stats[0]],
+            this.moves = [response.data.moves[0],response.data.moves[1],response.data.moves[2]],
+            console.log(response)
+            })
         .catch(e => console.log(e))
-        console.log(this.$props.url);
+        // console.log(this.$props.url);
     }
 }
 
@@ -79,13 +87,19 @@ p{
 }
 
 .subinfo{
-    flex:0.5;
+    flex:0.3;
     padding-top: 15px;
+    text-transform: capitalize;
+    border-right: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
 }
 
 .subinfo2{
     flex:1;
-    padding-top: 15px;
+    padding-top: 5px;
+    border-right: 1px solid #dbdbdb;
+    text-transform: capitalize;
+    
 }
 
 .image{
@@ -96,6 +110,7 @@ p{
 .pokemon{
     background: #bdbdbd9b;
     height: 100px;
+    object-fit: contain;
 }
 
 .options{
@@ -109,18 +124,20 @@ p{
     border-bottom-right-radius: 10px;
 }
 .division{
-    flex: 1;
+    flex: 0.7;
     background: #f8f8f8;
     border: none;
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     padding-right: 30%;
+    background: rgba(238, 75, 75, 0.89);
+    color:white;
 }
 .division2{
-    flex: 1;
+    flex: 0.7;
     background: #f8f8f8;
     border: none;
-    border-bottom-left-radius: 10px;
+    background: rgba(36, 35, 35, 0.835);
+    color: white;
     border-bottom-right-radius: 10px;
     padding-left: 28%;
 }

@@ -3,8 +3,12 @@
         <div class="containerLogo">
             <img class="logo" src="http://pixelartmaker.com/art/d98dde45d242734.png">
         </div>
+        <div class="choose">
+            <p>Batalla y captura tu pokemon</p>
+        </div>
         <div class="menu">
-        
+            <p>hola</p>
+            <a href="http://">hola</a>
         </div>
     </div>
 </template>
@@ -31,19 +35,29 @@ export default {
 .logo{
     min-width: 120px;
     max-height: 50px;
+    object-fit: contain;
 }
 
 .containerLogo{
     flex:1;
     display: flex;
-    justify-content: center
+    justify-content: center;
+}
+
+.choose{
+    flex:1;
+    padding:15px 0;
+    letter-spacing: 1px; 
+    text-align: center;
 }
 
 .menu{
-    padding-right: 30px;
     flex:1;
+    padding:15px 0;
+    padding-right: 30px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    border: 1px solid black;
 }
 
 </style>

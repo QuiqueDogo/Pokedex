@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div 
+      class="grid"
       v-for="(post, index) in post"
       :key="index">
       <card :name="post.name" :url="post.url" />
@@ -25,7 +26,7 @@ export default {
   },
 
 created() {
-  axios.get('https://pokeapi.co/api/v2/pokemon/?limit=50')
+  axios.get('https://pokeapi.co/api/v2/pokemon/?limit=51')
   .then(response => {this.post = response.data.results})
   .catch(e => console.log(e))
 }
@@ -36,16 +37,17 @@ created() {
 <style>
 .container {
   box-sizing: border-box;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
   margin: 0 auto;
-  max-height: 100vh;
+  max-height: 100%;
   max-width: 100vw;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto;
   text-align: center;
   border: 1px solid #dbdbdd;
+}
+
+.grid{
+  margin: 0 auto;
 }
 
 .title {
