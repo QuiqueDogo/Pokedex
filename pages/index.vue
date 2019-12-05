@@ -1,12 +1,14 @@
 <template>
+  <div >
+    <input v-model="filter" type="text" @keydown="search()"> 
   <div class="container">
-    <input v-model="filter">
     <div 
       class="grid"
-      v-for="(post, index) in PokemonsFilter"
+      v-for="(post, index) in filterPost"
       :key="index">
       <card :name="post.name" :url="post.url" />
     </div>
+  </div>
   </div>
 </template>
 
@@ -23,34 +25,41 @@ export default {
     return {
       filter:"",
       post:[],
+      filterPost:[]
     }
   },
 
-created() {
-  this.$axios.$get('/pokemon/?limit=10')
-  .then(response => {
-    this.post = response.results, 
-    console.log(response)
-  })
-  .catch(e => console.log(e))
-},
-  computed:{
-    PokemonsFilter(){
-      if (this.post.length > 0 ) {
-        if(!this.filter ){
-          return this.post
-        }
-        return  this.post.filter(item => {
-         if(item.name.indexOf(this.filter) > 0) {
-            return item
-          }else return ""
-          }
-        )
-      }
-      return false 
-    }
-  }
+  created() {
+    this.$axios.$get('/pokemon/?limit=10')
+    .then(response => {
+      this.post = response.results
+      this.filterPost = response.results
+      // console.log(response);
+    })
+    .catch(e => console.log(e))
+  },
 
+  methods:{
+    search(){
+      this.filterPost = [];
+  
+      this.post.map(item => {
+        if (this.filter == '' || this.filter == ' ') {
+          this.filterPost = this.post
+				} else {
+          if (item.name.toUpperCase().indexOf(this.filter.toUpperCase()) > -1) {
+            this.filterPost.push(item)
+					}
+        }
+      })
+    },
+  },
+
+  mounted() {
+    this.post.map( item => {
+      this.filterPost.push(item)
+    })
+  }
 }
 </script>
 
@@ -64,7 +73,6 @@ created() {
   grid-gap: 50px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   text-align: center;
-  border: 1px solid #dbdbdd;
 }
 
 .grid{

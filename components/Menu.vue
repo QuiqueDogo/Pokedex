@@ -28,7 +28,7 @@ export default {
     padding:10px;
     display: flex;
     width:100%;
-    height:7vh;
+    height:10vh;
     background-image: linear-gradient(to right, #d16b6b, #d16f6a, #d1746a, #d1786a, #d17c6a, #d17e6a, #d17f6b, #d1816b, #d1816b, #d1816b, #d1816b, #d1816b);
 }
 

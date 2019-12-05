@@ -1,13 +1,16 @@
 <template>
-    <div class="card">
+    <div :style="cssProps" class="card">
         <div class="main">
             <div class="info">
                 <div class="subinfo">
                 <p>{{name}}</p>
+                <div class="containerHp">
+                    <div class="HP"></div>
+                </div>
                 </div>
                 <div class="subinfo2">
                 <h5 >Stats</h5>
-                <p>PH: {{stats[0].base_stat}}</p>
+                <p>PH: {{hp[0].base_stat}}/{{stats[0].base_stat}}</p>
                 <p>Moves: {{moves[0].move.name}}, {{moves[1].move.name}}, {{moves[2].move.name}} </p>
                 </div>
             </div>
@@ -19,7 +22,7 @@
             <button class="division">
                 <p>Capturar</p>
             </button>
-            <button class="division2">
+            <button v-on:click="Attack" class="division2">
                 <p>Atacar</p>
             </button>
         </div>
@@ -32,20 +35,45 @@ export default {
         return {
             img:[],
             stats:[{base_stat:1}],
+            hp:[{base_stat:1}],
             moves:[{move:{name:"cut"}},{move:{name:"cut"}},{move:{name:"cut"}}]
         }
     },
     props:["name","url"],
     created(){
+        console.log(this.$props.name, this.$props.url);
         this.$axios.get(`${this.$props.url}`)
         .then(response => {
             this.img = response.data.sprites.front_default,
             this.stats = [response.data.stats[0]],
+            this.hp = [response.data.stats[0]],
             this.moves = [response.data.moves[0],response.data.moves[1],response.data.moves[2]]
-            // console.log(response)
             })
         .catch(e => console.log(e))
-        // console.log(this.$props.url);
+    },
+    computed:{
+        cssProps() {return {
+            '--life': ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) + "%",
+            '--color': 
+            (((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 100 && 
+            ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) >= 60) ? "#15e765" : 
+            (((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 59 && ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) >= 30) ? "#d9bd27" : "#f45639"
+        }
+        }
+    },
+    methods:{
+        Attack: function (event) {
+            if( this.hp[0].base_stat >= 10 ){
+                this.hp = [{base_stat:(this.hp[0].base_stat -  Math.round(Math.random() * (9 - 1) + 1))}];
+            console.log(
+                this.$props.name,
+                ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) + "%",
+                Math.round(Math.random() * (9 - 1) + 1)
+                )
+            }else if (this.hp[0].base_stat <= 9){
+                alert(`Detente, Vas a matar a ${this.$props.name}. :(`)
+            }
+        }
     }
 }
 
@@ -58,6 +86,26 @@ export default {
 
 p{
     font-size: 14px;
+}
+
+.containerHp{
+    width: 90%;
+    height: 11px;
+    margin: 5px auto;
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    background: #475355;;
+}
+
+.HP{
+    width: var(--life);
+    height: 9px;
+    position: relative;
+    border-radius: 5px;
+    background: var(--color);
+    border: 1px solid var(--color);
+    transition: 0.4s ease;
 }
 
 .card{
