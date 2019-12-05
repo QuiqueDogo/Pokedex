@@ -1,12 +1,12 @@
 <template>
-  <div >
-    <input v-model="filter" type="text" @keydown="search()"> 
+  <div class="contain" >
+    <input class="search" v-model="filter" type="text" @keydown="search()"> 
   <div class="container">
     <div 
       class="grid"
       v-for="(post, index) in filterPost"
       :key="index">
-      <card :name="post.name" :url="post.url" />
+      <card :name="post.name" :url="post.url" :key="index" />
     </div>
   </div>
   </div>
@@ -33,8 +33,7 @@ export default {
     this.$axios.$get('/pokemon/?limit=10')
     .then(response => {
       this.post = response.results
-      this.filterPost = response.results
-      // console.log(response);
+      this.filterPost = response.results;
     })
     .catch(e => console.log(e))
   },
@@ -64,6 +63,11 @@ export default {
 </script>
 
 <style>
+.search{
+  display: flex;
+  margin: 20px 20px 10px auto;
+}
+
 .container {
   box-sizing: border-box;
   margin: 0 auto;

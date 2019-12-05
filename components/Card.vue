@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="options">
-            <button class="division">
+            <button v-on:click="Capture" class="division">
                 <p>Capturar</p>
             </button>
             <button v-on:click="Attack" class="division2">
@@ -33,15 +33,18 @@
 export default {
     data(){
         return {
+            disable:false,
             img:[],
             stats:[{base_stat:1}],
             hp:[{base_stat:1}],
             moves:[{move:{name:"cut"}},{move:{name:"cut"}},{move:{name:"cut"}}]
         }
     },
-    props:["name","url"],
+
+    props:["name","url","index"],
+
     created(){
-        console.log(this.$props.name, this.$props.url);
+        console.log(localStorage.length)
         this.$axios.get(`${this.$props.url}`)
         .then(response => {
             this.img = response.data.sprites.front_default,
@@ -52,12 +55,13 @@ export default {
         .catch(e => console.log(e))
     },
     computed:{
-        cssProps() {return {
+        cssProps() {
+            return {
             '--life': ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) + "%",
             '--color': 
             (((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 100 && 
             ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) >= 60) ? "#15e765" : 
-            (((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 59 && ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) >= 30) ? "#d9bd27" : "#f45639"
+            (((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 59 && ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) >= 30) ? "#f7de76" : "#f45639"
         }
         }
     },
@@ -65,15 +69,36 @@ export default {
         Attack: function (event) {
             if( this.hp[0].base_stat >= 10 ){
                 this.hp = [{base_stat:(this.hp[0].base_stat -  Math.round(Math.random() * (9 - 1) + 1))}];
-            console.log(
-                this.$props.name,
-                ((this.hp[0].base_stat * 100)/this.stats[0].base_stat) + "%",
-                Math.round(Math.random() * (9 - 1) + 1)
-                )
             }else if (this.hp[0].base_stat <= 9){
-                alert(`Detente, Vas a matar a ${this.$props.name}. :(`)
+                alert(`Detente, Vas a matar a ${this.$props.name}. :(`);
             }
+        },
+        Capture: function (event) {
+            if(((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 45){
+                console.log("Puedes atraparlo");
+                this.NewLocalStorage(this.$props.name, this.img);
+            }else {
+                alert("Necesitas bajarle mas vida");
+            }
+        },
+        NewLocalStorage: function (name, image){
+            let newPokemon;
+            newPokemon = this.GetLocalPokemons();
+            newPokemon.push({name:name, img:image})
+            localStorage.setItem("pokemonList", JSON.stringify(newPokemon))
+            // localStorage.setItem("pokemonList", JSON.stringify([{name:name, img:image}]));
+        },
+
+        GetLocalPokemons: function (){
+            let pokemons;
+            if (localStorage.getItem("pokemonList") === null ) {
+                pokemons = [];
+            }else{
+                pokemons = JSON.parse(localStorage.getItem("pokemonList"));
+            }
+            return pokemons;
         }
+
     }
 }
 

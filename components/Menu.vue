@@ -7,8 +7,8 @@
             <p>Batalla y captura tu pokemon</p>
         </div>
         <div class="menu">
-            <p>hola</p>
-            <a href="http://">hola</a>
+            <a >Lista Pokemons</a>
+            <a href="http://">Mis Pokemons</a>
         </div>
     </div>
 </template>
@@ -28,7 +28,7 @@ export default {
     padding:10px;
     display: flex;
     width:100%;
-    height:10vh;
+    height:8vh;
     background-image: linear-gradient(to right, #d16b6b, #d16f6a, #d1746a, #d1786a, #d17c6a, #d17e6a, #d17f6b, #d1816b, #d1816b, #d1816b, #d1816b, #d1816b);
 }
 
@@ -46,14 +46,14 @@ export default {
 
 .choose{
     flex:1;
-    padding:15px 0;
+    padding:5px 0;
     letter-spacing: 1px; 
     text-align: center;
 }
 
 .menu{
     flex:1;
-    padding:15px 0;
+    padding:5px 0;
     padding-right: 30px;
     display: flex;
     justify-content: center;
