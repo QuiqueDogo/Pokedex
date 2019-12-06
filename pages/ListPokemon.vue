@@ -20,7 +20,7 @@ export default {
   
   data(){
     return {
-        pokemonSave:[]
+        pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}]
     }
   },
   mounted(){
@@ -58,7 +58,7 @@ export default {
 }
 .container-pok{
     height: 100%;
-    width: 90vw;
+    width: 90%;
     background: #883a3a;
     margin:30px auto; 
     display: grid;
