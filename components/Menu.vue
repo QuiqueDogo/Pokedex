@@ -7,29 +7,71 @@
             <p>Batalla y captura tu pokemon</p>
         </div>
         <div class="menu">
-            <a >Lista Pokemons</a>
-            <a href="http://">Mis Pokemons</a>
+            <a :class="activeBar" href="/">Pokemons</a>
+            <a :class="activeBar2" href="/ListPokemon">Mis Pokemons</a>
         </div>
     </div>
 </template>
 
 <script>
-import Hamburger from "~/components/Hamburger.vue"
 
 export default {
-    components:{
-        Hamburger
-    }
+    data(){
+        return{
+            activeBar: '',
+            activeBar2: '',
+            }
+    },
+    created() {
+        if(this.$root._route.name == "index"){
+            this.activeBar = 'active'
+        }else if(this.$root._route.name == "ListPokemon"){
+            this.activeBar2 = 'active'
+        }
+  },
 }
 </script>
 
 <style scoped>
+.active{
+    box-shadow: 0 3px 0 rgba(54, 52, 52, 0.828);
+    transition: 0.2s ease-in;
+}
+
+a{  
+    text-align: center;
+    color:rgba(224, 218, 218, 0.87);
+    margin: 0 20px;
+    font-family: helvetica;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s ease-in;
+    padding: 7px 0 0 0;
+    height: 30px;
+}
+
+a:visited{
+    color:rgb(235, 228, 228);
+}
+
+a:hover{
+    box-shadow: 0 3px 0 rgba(54, 52, 52, 0.828);
+    cursor: pointer;
+}
+
+.Pok{
+    color: white;
+}
+
+
 .header{
     padding:10px;
     display: flex;
     width:100%;
-    height:8vh;
-    background-image: linear-gradient(to right, #d16b6b, #d16f6a, #d1746a, #d1786a, #d17c6a, #d17e6a, #d17f6b, #d1816b, #d1816b, #d1816b, #d1816b, #d1816b);
+    height:50px;
+    background-image: 
+    linear-gradient(to right, #FF6363, #FF6363, #FF6363, #FF6363, #FF6363, #FF6363
+    , #FF6363, #e45a5a, #e45a5a, #e45a5a, #e45a5a, #e45a5a);
 }
 
 .logo{
@@ -53,7 +95,6 @@ export default {
 
 .menu{
     flex:1;
-    padding:5px 0;
     padding-right: 30px;
     display: flex;
     justify-content: center;

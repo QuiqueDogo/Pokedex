@@ -15,11 +15,12 @@
                 </div>
             </div>
             <div class="image">
-                <img class="pokemon" :src="img" alt="" srcset="">
+                <img :class="pokemon" :src="img" alt="" srcset="">
+                <img :class="pokeball" src="~/static/poke.png" alt="" srcset="">
             </div>
         </div>
         <div class="options">
-            <button v-on:click="Capture" class="division">
+            <button :disabled="disable" v-on:click="Capture" class="division">
                 <p>Capturar</p>
             </button>
             <button v-on:click="Attack" class="division2">
@@ -33,7 +34,8 @@
 export default {
     data(){
         return {
-            disable:false,
+            pokemon:'pokemon',
+            pokeball:'pokeball',
             img:[],
             stats:[{base_stat:1}],
             hp:[{base_stat:1}],
@@ -75,8 +77,11 @@ export default {
         },
         Capture: function (event) {
             if(((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 45){
-                console.log("Puedes atraparlo");
+                this.pokemon += ' magic'
                 this.NewLocalStorage(this.$props.name, this.img);
+                setTimeout(() => {
+                    this.pokeball += " pokeballshow"
+                }, 800);
             }else {
                 alert("Necesitas bajarle mas vida");
             }
@@ -102,12 +107,68 @@ export default {
     }
 }
 
-
+// magic
+// pokeballshow
 
 
 </script>
 
 <style >
+
+@keyframes Bounces {
+    0%{
+        transform:scale(1);
+    }
+    60%{
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes BouncesPokeball {
+    0%{
+        transform: scale(0);
+        opacity: 0;
+    }
+    60%{
+        transform: scale(1.3);
+        opacity: 1;
+    }
+    100%{
+        transform:scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+.magic{
+    animation-duration: 0.8s;
+    animation-name: Bounces;
+    animation-fill-mode: forwards
+}
+
+.pokeballshow{
+    animation-duration: 0.5s;
+    animation-name: BouncesPokeball;
+    animation-fill-mode: forwards
+}
+
+.pokeball{
+    position: relative;
+    top: -70px;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+}
+
+button{
+    cursor: pointer;
+}
 
 p{
     font-size: 14px;
@@ -142,6 +203,7 @@ p{
     border-radius: 10px;
     margin:20px;
     grid-row: 1;
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
 }
 .main{
     width: 100%;
@@ -177,6 +239,7 @@ p{
 .image{
     padding-top: 15px;
     width: 40%;
+    position: relative;
 }
 
 .pokemon{
