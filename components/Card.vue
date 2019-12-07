@@ -46,7 +46,6 @@ export default {
     props:["name","url","index"],
 
     created(){
-        console.log(localStorage.length)
         this.$axios.get(`${this.$props.url}`)
         .then(response => {
             this.img = response.data.sprites.front_default,
@@ -78,7 +77,7 @@ export default {
         Capture: function (event) {
             if(((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 45){
                 this.pokemon += ' magic'
-                this.NewLocalStorage(this.$props.name, this.img);
+                this.NewLocalStorage(this.$props.name, this.img, this.$props.url);
                 setTimeout(() => {
                     this.pokeball += " pokeballshow"
                 }, 800);
@@ -86,10 +85,10 @@ export default {
                 alert("Necesitas bajarle mas vida");
             }
         },
-        NewLocalStorage: function (name, image){
+        NewLocalStorage: function (name, image, url){
             let newPokemon;
             newPokemon = this.GetLocalPokemons();
-            newPokemon.push({name:name, img:image})
+            newPokemon.push({name:name, img:image, url:url})
             localStorage.setItem("pokemonList", JSON.stringify(newPokemon))
             // localStorage.setItem("pokemonList", JSON.stringify([{name:name, img:image}]));
         },
@@ -230,7 +229,7 @@ p{
 
 .subinfo2{
     flex:1;
-    padding-top: 5px;
+    padding: 8px;
     border-right: 1px solid #dbdbdb;
     text-transform: capitalize;
     
@@ -243,7 +242,6 @@ p{
 }
 
 .pokemon{
-    background: #bdbdbd9b;
     height: 100px;
     object-fit: contain;
 }

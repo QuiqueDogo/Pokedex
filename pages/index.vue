@@ -30,7 +30,7 @@ export default {
   },
 
   created() {
-    this.$axios.$get('/pokemon/?limit=10')
+    this.$axios.$get('/pokemon/?limit=')
     .then(response => {
       this.post = response.results
       this.filterPost = response.results;
@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style>
+*{
+  font-family: 'Turret Road', cursive;
+}
 .search{
   display: flex;
   margin: 20px 20px 10px auto;
@@ -70,7 +73,7 @@ export default {
 
 .container {
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0 50px;
   max-height: 100%;
   max-width: 100vw;
   display: grid;

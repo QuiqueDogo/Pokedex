@@ -1,46 +1,69 @@
 <template>
     <div class="container-pok">
-        <div 
-        class="pokemon"
+    <img style="position:absolute;bottom:0;right:0; width:400px; heigth:400px;" src="https://i.imgur.com/YWy6sdr.png" alt="" srcset="">
+    <div class="list">
+        <p style="text-align:center;">Mis Pokemons</p>
+        <IndividualPokemon 
         v-for="(element, index) in pokemonSave"
         :key="index"
-        >
-            <div class="image">
-                <img :src="element.img">
-            </div>
-            <div class="text">
-                <p>{{element.name}}</p>
-            </div>
-        </div>
+        v-on:click.native="GetInfo(element.url)"
+        :name="element.name"
+        :img="element.img"
+        />
+    </div>
+    <div class="detail">
+        <detail />
+    </div>
+    
     </div>
 </template>
 
 <script>
-export default {
-  
-  data(){
-    return {
-        pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}]
-    }
-  },
-  mounted(){
-      this.getLocalStorage();
-  },
+import IndividualPokemon from "~/components/IndividualPokemon.vue"
+import Detail from "~/components/Detail.vue"
 
-  methods:{
-      getLocalStorage(){
-            const PokemontoPrint = localStorage.getItem('pokemonList');
-            if(PokemontoPrint !== null ){
-                this.pokemonSave = JSON.parse(PokemontoPrint);
-                console.log(this.pokemonSave);
-            }
-      }
-  },
+export default {
+    components:{
+        IndividualPokemon,
+        Detail
+    },
+    data(){
+        return {
+            pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}]
+        }
+    },
+    mounted(){
+        this.getLocalStorage();
+    },
+
+    methods:{
+        getLocalStorage(){
+                const PokemontoPrint = localStorage.getItem('pokemonList');
+                if(PokemontoPrint !== null ){
+                    this.pokemonSave = JSON.parse(PokemontoPrint);
+                }
+        },
+        GetInfo(url){
+            console.log(url);
+            
+        }
+    },
 }
 </script>
 
-<style scoped>
+<style >
+*{
+    font-family: 'Turret Road', cursive;
+}
 
+.list{
+    flex: 0.35;
+}
+
+.detail{
+    flex: 1;
+    border: 1px solid black;
+}
 
 .image{
     width: 100%;
@@ -57,14 +80,11 @@ export default {
     text-transform: capitalize;
 }
 .container-pok{
-    height: 100%;
+    height: 90vh;
     width: 90%;
-    background: #883a3a;
+    background: #e45a5a;
     margin:30px auto; 
-    display: grid;
-    grid-gap: 50px;
-    border-radius: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
     box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
 }
 

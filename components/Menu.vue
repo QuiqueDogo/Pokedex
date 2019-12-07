@@ -42,7 +42,6 @@ a{
     text-align: center;
     color:rgba(224, 218, 218, 0.87);
     margin: 0 20px;
-    font-family: helvetica;
     text-decoration: none;
     text-transform: capitalize;
     transition: 0.2s ease-in;
