@@ -1,9 +1,9 @@
 <template>
   <div class="contain" >
-    <input class="search" v-model="filter" type="text" @keydown="search()"> 
-    <client-only>
-    <offline-alert/>
-  </client-only>
+    <div class="search">
+      <img src="~/static/icon.png" class="icon" />
+      <input class="modesearch" v-model="filter" type="text" @keydown="search()"> 
+    </div>
   <div class="container">
     <div 
       class="grid"
@@ -12,7 +12,7 @@
       <card :name="post.name" :url="post.url" :key="post.name" />
     </div>
   </div>
-  <audio autoplay :src="require('~/static/Route.mp3')" />
+  <audio loop autoplay :src="require('~/static/Route.mp3')" />
   </div>
 </template>
 
@@ -74,7 +74,29 @@ export default {
 }
 .search{
   display: flex;
-  margin: 20px 70px 10px auto;
+  justify-content: flex-end;
+  justify-items: center;
+  margin: 20px 30px;
+}
+
+.icon{
+  height: 25px;
+  width: 25px;
+  position: relative;
+  left: 15%;
+  top: -2px;
+}
+
+.modesearch{
+  border: 0;
+  border-bottom: 1px solid #bdbdbd;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  transition: 0.5s ease-in;
+}
+
+.modesearch:focus{
+  border-color: #FF6363;
 }
 
 .container {

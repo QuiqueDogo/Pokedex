@@ -23,6 +23,7 @@ export default {
             }
     },
     created() {
+        
         if(this.$root._route.name == "index"){
             this.activeBar = 'active'
         }else if(this.$root._route.name == "ListPokemon"){
