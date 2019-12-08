@@ -77,11 +77,23 @@ export default {
         },
         Capture: function (event) {
             if(((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 45){
-                this.pokemon += ' magic'
+                let newPokemon;
+                newPokemon = this.GetLocalPokemons();
+                if (newPokemon.length <= 10) {
+                    
+                    this.pokemon += ' magic'
                 this.NewLocalStorage(this.$props.name, this.img, this.$props.url);
                 setTimeout(() => {
                     this.pokeball += " pokeballshow"
                 }, 800);
+                }else{
+                    alert("Ya has atrapado a 10 pokemons")
+                    // this.$Swal.fire(
+                    // 'Cuidado !',
+                    // 'Ya tienes 10 pokemones!',
+                    // 'error'
+                    // )
+                }
             }else {
                 alert("Necesitas bajarle mas vida");
             }
@@ -96,6 +108,12 @@ export default {
                 this.disableAttack = true;
             }else {
                 alert("Ya tienes capturados 10 pokemons");
+                
+                // this.$Swal.fire(
+                // 'Cuidado !',
+                // 'Ya tienes 10 pokemones!',
+                // 'error'
+                // )
             }
             
         },
@@ -177,7 +195,7 @@ button{
 }
 
 p{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .containerHp{

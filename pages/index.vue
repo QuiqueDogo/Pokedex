@@ -1,20 +1,25 @@
 <template>
   <div class="contain" >
     <input class="search" v-model="filter" type="text" @keydown="search()"> 
+    <client-only>
+    <offline-alert/>
+  </client-only>
   <div class="container">
     <div 
       class="grid"
       v-for="(post, index) in filterPost"
       :key="index">
-      <card :name="post.name" :url="post.url" :key="index" />
+      <card :name="post.name" :url="post.url" :key="post.name" />
     </div>
   </div>
+  <audio autoplay :src="require('~/static/Route.mp3')" />
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue' 
 import Card from '~/components/Card.vue'
+
 
 export default {
   components: {
@@ -30,12 +35,13 @@ export default {
   },
 
   created() {
-    this.$axios.$get('/pokemon/?limit=')
+    this.$axios.$get('/pokemon/?limit=49')
     .then(response => {
       this.post = response.results
       this.filterPost = response.results;
     })
     .catch(e => console.log(e))
+
   },
 
   methods:{
@@ -64,7 +70,7 @@ export default {
 
 <style>
 *{
-  font-family: 'Turret Road', cursive;
+  font-family: 'Open Sans', cursive;
 }
 .search{
   display: flex;

@@ -1,7 +1,6 @@
 <template>
     <div class="container-pok">
     <div class="list">
-        <p style="padding-left:20%; color:white;">Mis Pokemons</p>
         <IndividualPokemon 
         v-for="(element, index) in pokemonSave"
         :key="index"
@@ -13,7 +12,7 @@
     <div class="detail">
         <detail :info="info" :sprites="sprites" :allsprites="allsprites"/>
     </div>
-    
+    <audio autoplay loop :src="require('~/static/PokemonCenter.mp3')" />
     </div>
 </template>
 
@@ -74,7 +73,7 @@ export default {
 
 <style >
 *{
-    font-family: 'Turret Road', cursive;
+    font-family: 'Open Sans', cursive;
 }
 
 .list{
@@ -102,10 +101,8 @@ export default {
 .container-pok{
     height: 90vh;
     width: 90%;
-    background: #FF6363;
     margin:30px auto; 
     display: flex;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
 }
 
 .pokemon{    

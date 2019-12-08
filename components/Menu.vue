@@ -7,8 +7,8 @@
             <p>Batalla y captura tu pokemon</p>
         </div>
         <div class="menu">
-            <a :class="activeBar" href="/">Pokemons</a>
-            <a :class="activeBar2" href="/ListPokemon">Mis Pokemons</a>
+            <a style="width:auto;"  :class="activeBar" href="/">Pokemons</a>
+            <a style="width:auto;" :class="activeBar2" href="/ListPokemon">Mis Pokemons</a>
         </div>
     </div>
 </template>
@@ -72,6 +72,9 @@ p{
     width:100%;
     height:50px;
     background: #FF6363;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .logo{

@@ -49,8 +49,8 @@ export default {
         height: 14px;
         position: relative;
         border-radius: 5px;
-        left: 65%;
-        top: 15px;
+        left: 35%;
+        top: 35px;
         border: 1px solid #dbdbdb;
         background: #475355;;
     }
@@ -85,7 +85,8 @@ export default {
 
     .name{
         position: relative;
-        left: 22%;
+        top: -14%;
+        left: 28%;
         text-transform: uppercase;
         letter-spacing: 1.2px;
     }

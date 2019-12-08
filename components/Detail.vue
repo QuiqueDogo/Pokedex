@@ -5,7 +5,7 @@
         </div>
         <div class="subcontainer">
             <div class="img">
-                <img class="imgpokemon" :src="sprites" alt=" ">
+                <img class="imgpokemon" :src="(sprites != '') ? sprites: require('~/static/poke.png') " alt=" ">
             </div>
             <div class="info">
                 <div class="name">
@@ -32,12 +32,7 @@
 
 <script>
 export default {
-    props:['info','sprites','allsprites'],
-    data(){
-        return{
-        }
-    },
-    
+    props:['info','sprites','allsprites']
 }
 </script>
 
@@ -65,7 +60,7 @@ export default {
     font-size: 20px;
     letter-spacing: 1.2px;
     font-weight: 600;
-    padding: 10px 30px;
+    padding: 5px 30px;
 }
 .subcontainer{
     width: 100%;
