@@ -20,11 +20,11 @@
             </div>
         </div>
         <div class="options">
-            <button :disabled="disable" v-on:click="Capture" class="division">
-                <p>Capturar</p>
+            <button :disabled="disableAttack" v-on:click="Capture" class="division">
+                Capturar
             </button>
             <button v-on:click="Attack" class="division2">
-                <p>Atacar</p>
+                Atacar
             </button>
         </div>
     </div>
@@ -39,7 +39,8 @@ export default {
             img:[],
             stats:[{base_stat:1}],
             hp:[{base_stat:1}],
-            moves:[{move:{name:"cut"}},{move:{name:"cut"}},{move:{name:"cut"}}]
+            moves:[{move:{name:"cut"}},{move:{name:"cut"}},{move:{name:"cut"}}],
+            disableAttack:false
         }
     },
 
@@ -88,9 +89,15 @@ export default {
         NewLocalStorage: function (name, image, url){
             let newPokemon;
             newPokemon = this.GetLocalPokemons();
-            newPokemon.push({name:name, img:image, url:url})
-            localStorage.setItem("pokemonList", JSON.stringify(newPokemon))
-            // localStorage.setItem("pokemonList", JSON.stringify([{name:name, img:image}]));
+            console.log(newPokemon.length);
+            if (newPokemon.length <= 10) {
+                newPokemon.push({name:name, img:image, url:url})
+                localStorage.setItem("pokemonList", JSON.stringify(newPokemon))
+                this.disableAttack = true;
+            }else {
+                alert("Ya tienes capturados 10 pokemons");
+            }
+            
         },
 
         GetLocalPokemons: function (){
@@ -202,7 +209,7 @@ p{
     border-radius: 10px;
     margin:20px;
     grid-row: 1;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.2)
 }
 .main{
     width: 100%;

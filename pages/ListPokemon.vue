@@ -1,7 +1,7 @@
 <template>
     <div class="container-pok">
     <div class="list">
-        <p style="text-align:center;">Mis Pokemons</p>
+        <p style="padding-left:20%; color:white;">Mis Pokemons</p>
         <IndividualPokemon 
         v-for="(element, index) in pokemonSave"
         :key="index"
@@ -28,7 +28,7 @@ export default {
     },
     data(){
         return {
-            pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}],
+            pokemonSave:[],
             info:"",
             sprites:"",
             allsprites:[]
@@ -36,6 +36,7 @@ export default {
     },
     mounted(){
         this.getLocalStorage();
+        
     },
 
     methods:{
@@ -50,9 +51,22 @@ export default {
             .then(response => {
                 this.info = response.data,
                 this.sprites = response.data.sprites.front_default
-                this.allsprites = response.data.sprites
+                // this.allsprites = response.data.sprites
+                this.getSprites(response.data.sprites);
             })
             .catch(e => console.log(e));
+        },
+        clearLocalStorage(){
+            localStorage.removeItem('pokemonList');
+        },
+        getSprites(sprites){
+            var Allsprites = [];
+            for(const prop in sprites){
+                if (sprites[prop] !== null) {
+                    Allsprites.push(sprites[prop]);
+                }
+            }
+            this.allsprites = Allsprites;
         }
     },
 }
@@ -88,7 +102,7 @@ export default {
 .container-pok{
     height: 90vh;
     width: 90%;
-    background: #e45a5a;
+    background: #FF6363;
     margin:30px auto; 
     display: flex;
     box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);

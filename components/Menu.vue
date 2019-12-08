@@ -62,15 +62,16 @@ a:hover{
     color: white;
 }
 
+p{
+    font-size: 14px;
+}
 
 .header{
     padding:10px;
     display: flex;
     width:100%;
     height:50px;
-    background-image: 
-    linear-gradient(to right, #FF6363, #FF6363, #FF6363, #FF6363, #FF6363, #FF6363
-    , #FF6363, #e45a5a, #e45a5a, #e45a5a, #e45a5a, #e45a5a);
+    background: #FF6363;
 }
 
 .logo{
@@ -82,7 +83,8 @@ a:hover{
 .containerLogo{
     flex:1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 30px;
 }
 
 .choose{
@@ -90,13 +92,16 @@ a:hover{
     padding:5px 0;
     letter-spacing: 1px; 
     text-align: center;
+    font-weight: bolder;
+    color: white;
 }
 
 .menu{
     flex:1;
-    padding-right: 30px;
+    padding-right: 37px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    font-weight: bolder;
 }
 
 </style>

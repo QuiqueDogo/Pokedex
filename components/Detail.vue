@@ -134,7 +134,7 @@ export default {
     background: linear-gradient(to right , #e53133 2.5%,#f6969e 3.5%,#f6969e 3.5%,white 5%,white 95%,#f6969e 96.5%, #f6969e 96.5%,#e53133 98.5%)
 }
 .all{
-    height: 130px;
-    width: 130px;
+    height: 80px;
+    width: 80px;
 }
 </style>

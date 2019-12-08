@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
     .container{
-        width: 85%;
+        width: 90%;
         height: 55px;
         margin: 30px auto;
         border: 1px solid #3f3f3f;
@@ -85,7 +85,7 @@ export default {
 
     .name{
         position: relative;
-        left: 18%;
+        left: 22%;
         text-transform: uppercase;
         letter-spacing: 1.2px;
     }

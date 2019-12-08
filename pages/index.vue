@@ -68,7 +68,7 @@ export default {
 }
 .search{
   display: flex;
-  margin: 20px 20px 10px auto;
+  margin: 20px 70px 10px auto;
 }
 
 .container {
@@ -77,7 +77,7 @@ export default {
   max-height: 100%;
   max-width: 100vw;
   display: grid;
-  grid-gap: 50px;
+  grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   text-align: center;
 }
