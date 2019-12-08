@@ -72,8 +72,8 @@ export default {
             if( this.hp[0].base_stat >= 10 ){
                 this.hp = [{base_stat:(this.hp[0].base_stat -  Math.round(Math.random() * (9 - 1) + 1))}];
             }else if (this.hp[0].base_stat <= 9){
-                alert(`Detente, Vas a matar a ${this.$props.name}. :(`);
-            }
+                this.$toasted.show(`Detente, Vas a matar a ${this.$props.name}. :(`,{duration:2000})
+        }
         },
         Capture: function (event) {
             if(((this.hp[0].base_stat * 100)/this.stats[0].base_stat) <= 45){
@@ -86,16 +86,12 @@ export default {
                 setTimeout(() => {
                     this.pokeball += " pokeballshow"
                 }, 800);
+                this.$toasted.show(`Atrapado`,{type:'success',duration:2000})
                 }else{
-                    alert("Ya has atrapado a 10 pokemons")
-                    // this.$Swal.fire(
-                    // 'Cuidado !',
-                    // 'Ya tienes 10 pokemones!',
-                    // 'error'
-                    // )
+                    this.$toasted.show("Ya has atrapado a 10 pokemons",{duration:2000})
                 }
             }else {
-                alert("Necesitas bajarle mas vida");
+                this.$toasted.show(`Necesitas bajarle mas vida`,{type:'error',duration:2000})
             }
         },
         NewLocalStorage: function (name, image, url){
@@ -108,12 +104,6 @@ export default {
                 this.disableAttack = true;
             }else {
                 alert("Ya tienes capturados 10 pokemons");
-                
-                // this.$Swal.fire(
-                // 'Cuidado !',
-                // 'Ya tienes 10 pokemones!',
-                // 'error'
-                // )
             }
             
         },

@@ -10,6 +10,7 @@
         />
     </div>
     <div class="detail">
+        <button class="pokemon">Liberar Pokemons</button>
         <detail :info="info" :sprites="sprites" :allsprites="allsprites"/>
     </div>
     <audio autoplay loop :src="require('~/static/PokemonCenter.mp3')" />
@@ -57,6 +58,7 @@ export default {
         },
         clearLocalStorage(){
             localStorage.removeItem('pokemonList');
+            this.$toasted.show(`Pokemons Liberados`,{type:'success',duration:2000})
         },
         getSprites(sprites){
             var Allsprites = [];
@@ -106,19 +108,13 @@ export default {
 }
 
 .pokemon{    
-    width: 10vw;
-    height: 15vh;
-    margin: 30px 30px;
-    background: rgba(206, 89, 89, 0.924);
-    border: 2px solid white;
+    position: absolute;
+    right: 5%;
+    background: #f8f8f8;
     border-radius: 10px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 1px 1px 4px 1px rgb(0, 0, 0);
+    border: 0;
+    height: 30px;
+    background: rgba(238, 75, 75, 0.89);
+    color:white;
 }
-
-
-
-
 </style>

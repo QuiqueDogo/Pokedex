@@ -42,7 +42,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'nuxt-sweetalert2'
+    '@nuxtjs/toast',
   ],
   /*
   ** Axios module configuration
@@ -51,6 +51,20 @@ export default {
   axios: {
     baseURL: "https://pokeapi.co/api/v2/"
   },
+
+  toast: {
+    position: 'top-left',
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
+  },
+
   /*
   ** Build configuration
   */
