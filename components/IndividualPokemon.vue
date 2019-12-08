@@ -11,7 +11,8 @@
 
 <script>
 export default {
-    props:["name","img"]
+    props:["name","img"],
+    
 }
 </script>
 
@@ -24,7 +25,7 @@ export default {
         border-radius: 30px;
         cursor: pointer;
         box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.75);
-        background: linear-gradient(to bottom, #3F92DD 60%, #7EC4DD 2%,#3F92DD 70%,#7EC4DD 10%)
+        background: linear-gradient(to bottom, #3F92DD 60%, #7EC4DD 2%,#3F92DD 70%,#7EC4DD 10%);
     }
 
     .individual{
@@ -61,7 +62,7 @@ export default {
         position: absolute;
         left: -25%;
         top: -8%;
-        font-size: 15px;
+        font-size: 13px;
         height: 14px;
         width: 25px;
         text-align: center;

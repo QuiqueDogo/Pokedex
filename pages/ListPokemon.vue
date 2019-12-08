@@ -1,6 +1,5 @@
 <template>
     <div class="container-pok">
-    <img style="position:absolute;bottom:0;right:0; width:400px; heigth:400px;" src="https://i.imgur.com/YWy6sdr.png" alt="" srcset="">
     <div class="list">
         <p style="text-align:center;">Mis Pokemons</p>
         <IndividualPokemon 
@@ -12,7 +11,7 @@
         />
     </div>
     <div class="detail">
-        <detail />
+        <detail :info="info" :sprites="sprites" :allsprites="allsprites"/>
     </div>
     
     </div>
@@ -29,7 +28,10 @@ export default {
     },
     data(){
         return {
-            pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}]
+            pokemonSave:[{"name":"bulbasaur","img":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"}],
+            info:"",
+            sprites:"",
+            allsprites:[]
         }
     },
     mounted(){
@@ -44,8 +46,13 @@ export default {
                 }
         },
         GetInfo(url){
-            console.log(url);
-            
+            this.$axios.get(url)
+            .then(response => {
+                this.info = response.data,
+                this.sprites = response.data.sprites.front_default
+                this.allsprites = response.data.sprites
+            })
+            .catch(e => console.log(e));
         }
     },
 }
@@ -62,7 +69,6 @@ export default {
 
 .detail{
     flex: 1;
-    border: 1px solid black;
 }
 
 .image{
@@ -98,7 +104,7 @@ export default {
     display:flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 4px 1px rgb(0, 0, 0);
 }
 
 
