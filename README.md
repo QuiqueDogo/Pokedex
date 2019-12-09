@@ -1,6 +1,7 @@
 # nuxt
 
-> Pokedex
+> Pokedex - Prueba Entrophy
+
 
 ## Build Setup
 
